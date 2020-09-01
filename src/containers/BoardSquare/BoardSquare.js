@@ -6,11 +6,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {addItems, removeItems} from "../../redux/actions/board";
 import Overlay from "../../components/square/Overlay";
 import {setHoveredSquares} from "../../redux/actions/draggedItem";
+import styled from "styled-components";
+
+const Div = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
 
 const BoardSquare = ({coords: [x,y], children}) => {
   const [isOver,setIsOver] = useState(false);
 
-  const [hoveredSquare, allHoveredSquares, canDropRedux, mainCell, width, height] = useSelector(({board, draggedItem}) =>
+  const [hoveredSquare, allHoveredSquares, canDropRedux, mainCell, width, height] =
+    // @ts-ignore - board does not exists on DefaultRootState
+    useSelector(({board, draggedItem}) =>
     ([draggedItem.hoveredSquare, draggedItem.allHoveredSquares,
     draggedItem.canDrop, draggedItem.mainCell, draggedItem.width, draggedItem.height]));
 
@@ -33,7 +42,7 @@ const BoardSquare = ({coords: [x,y], children}) => {
   })
 
   useEffect(() => {
-    const idx = allHoveredSquares.findIndex(el => el[0] === x && el[1] === y);
+    const idx = allHoveredSquares.findIndex((el) => el[0] === x && el[1] === y);
     if(idx !== -1) {
       setIsOver(true);
     } else {
@@ -41,24 +50,13 @@ const BoardSquare = ({coords: [x,y], children}) => {
     }
   },[x,y,allHoveredSquares])
 
-  if(x === 0 && y === 0 ) {
-    console.log('isOver',isOver);
-  }
-
   return (
-    <div
-      ref={drop}
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-      }}
-    >
+    <Div ref={drop}>
       <Square>{children}</Square>
       {!isOver && canDropRedux && <Overlay color="yellow" />}
       {isOver && !canDropRedux && <Overlay color="red" />}
       {isOver && canDropRedux && <Overlay color="green" />}
-    </div>
+    </Div>
   )
 }
 

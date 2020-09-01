@@ -6,7 +6,6 @@ import Board from "./components/board/Board";
 import Alert from "./components/layout/Alert/Alert";
 import InventoryContainer from "./components/inventoryContainer/InventoryContainer";
 
-
 const Container = styled.div`
     display: flex;
     flex-grow: 1;
@@ -18,8 +17,7 @@ const Container = styled.div`
 }
 `
 
-function App() {
-
+const App: React.FC = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <Container>

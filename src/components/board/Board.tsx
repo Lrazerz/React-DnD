@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import CommonItem from "../items/CommonItem/CommonItem";
 import BoardSquare from "../../containers/BoardSquare/BoardSquare";
 import {yMax, yMin, xMax, xMin} from "../../constants/boardDimensions";
 import {useSelector} from "react-redux";
 import styled from "styled-components";
+import SquareCommonItem from "../../containers/SquareCommonItem/SquareCommonItem";
 
 const Container = styled.div`
     width: 68%;
@@ -19,19 +19,28 @@ const Container = styled.div`
     }
 `;
 
+const RenderSquare = styled.div`
+    height: 100%;
+    box-sizing: border-box; 
+    border-top: 3px solid gray; 
+    border-left: 3px solid gray;
+`;
+
 const Board = () => {
   const squares = [];
-  const boardItems = useSelector(({board}) => board.board);
+  // @ts-ignore - board does not exists on state
+  const boardItems = useSelector(state => state.board.board);
   // proportional to width (17x6)
   const [boardHeight, setBoardHeight] = useState(null);
 
-  const boardEl = useRef(null);
+  const boardEl:React.MutableRefObject<null> | null = useRef(null);
 
-  // Make item proportional no matter where it placed
+  // Make element proportional no matter where it placed
   useEffect(() => {
     // Handler to call on window resize
     function handleResize() {
-      const width = boardEl.current.clientWidth;
+      const current: HTMLElement | null = boardEl.current;
+      const width = current.clientWidth;
       setBoardHeight(width * 0.35);
     }
 
@@ -46,7 +55,7 @@ const Board = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
 
-  const renderSquare = (y, x) => {
+  const renderSquare = (y: number, x: number) => {
     if (!boardItems) {
       return null;
     }
@@ -55,18 +64,15 @@ const Board = () => {
     const item = boardItems[y][x];
     if (item) {
       const {mainCell, width, height} = item;
-      squareContent = <CommonItem coords={[x, y]} mainCell={mainCell}
-                                  width={width} height={height}/>;
+      squareContent = <SquareCommonItem coords={[x, y]} mainCell={mainCell}
+                                        width={width} height={height}/>;
     }
     return (
-      <div key={[x, y]} style={{
-        height: '100%',
-        boxSizing: 'border-box', borderTop: '3px solid gray', borderLeft: '3px solid gray',
-      }}>
+      <RenderSquare key={x*20+y}>
         <BoardSquare coords={[x, y]}>
           {squareContent}
         </BoardSquare>
-      </div>
+      </RenderSquare>
     );
   }
 
