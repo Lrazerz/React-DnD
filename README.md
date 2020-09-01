@@ -1,4 +1,4 @@
-                        Redux
+Redux:
 
 **Board** - contains board (matrix 6x17 squares):
 
