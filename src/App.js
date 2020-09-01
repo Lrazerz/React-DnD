@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import styled from 'styled-components';
+import Board from "./components/board/Board";
+import Alert from "./components/layout/Alert/Alert";
+import InventoryContainer from "./components/inventoryContainer/InventoryContainer";
+
+
+const Container = styled.div`
+    display: flex;
+    flex-grow: 1;
+    padding: 2%;
+    background-color: green;
+    @media (max-width: 780px) {
+        flex-direction: column;
+    }
+}
+`
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <Container>
+        <Alert/>
+        <InventoryContainer/>
+        <Board />
+        <InventoryContainer/>
+      </Container>
+    </DndProvider>
   );
 }
+
 
 export default App;

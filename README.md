@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+                        Redux
 
-## Available Scripts
+**Board** - contains board (matrix 6x17 squares):
 
-In the project directory, you can run:
+every square (cell):
+=== null 
+or ===  {mainCell, width, height},
 
-### `npm start`
+where _mainCell_ === [x,y] - coordinates of the
+main square (lowest x and y),
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+_width_ - width of the item in squares,
+_height_ - height of the item in squares
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+**Dragged Item** - contains info about currently dragged 
+item and hovered squares:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+_mainCell_, _width_, _height_ - info about currently dragged item
+from **Board** reducer.
 
-### `npm run build`
+_xUp_, _xDown_, _yUp_, _yDown_ - numbers, how many squares 
+of item exist in relation to the square over which the 
+item is being dragged
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+_hoveredSquare_ === [x,y] - single square hovered the 
+mouse over
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+_allHoveredSquares_ - [[x,y],...] - array of all hovered
+squares (depend on item size)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+_canDrop_ - boolean, indicate can we drop an item
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Alert** - array of alerts to display
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+_alert_ === {msg, alertType, id}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
