@@ -36,7 +36,6 @@ const Board = () => {
 
   // Make element proportional no matter where it placed
   useEffect(() => {
-    console.log('useEffect');
     // Handler to call on window resize
     function handleResize() {
       const current: HTMLElement | null = boardEl.current;
@@ -81,8 +80,6 @@ const Board = () => {
       squares.push(renderSquare(y, x));
     }
   }
-
-  console.log('height',boardHeight);
 
   return (
     <Container ref={boardEl} style={{height: `${boardHeight+0}px`}}>

@@ -50,7 +50,6 @@ const BoardSquare = ({coords: [x,y], children}) => {
     }
   },[x,y,allHoveredSquares])
 
-  console.log('isOver, canDropreDux',isOver,canDropRedux);
   return (
     <Div ref={drop}>
       <Square>{children}</Square>
