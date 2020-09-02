@@ -29,7 +29,9 @@ const BoardSquare = ({coords: [x,y], children}) => {
     accept: ItemTypes.ITEM,
     drop: (item, monitor) => {
       if(monitor.canDrop()) {
-        dispatch(removeItems(mainCell, width, height));
+        if(item.isInventoryId === false) {
+          dispatch(removeItems(mainCell, width, height));
+        }
         dispatch(addItems([x,y]));
       }
     },

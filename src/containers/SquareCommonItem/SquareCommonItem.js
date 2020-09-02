@@ -10,7 +10,7 @@ const SquareCommonItem = ({coords: [x, y], mainCell, width, height, isInventoryI
   const dispatch = useDispatch();
   // Allow drag
   const [{}, drag] = useDrag({
-    item: {type: ItemTypes.ITEM},
+    item: {type: ItemTypes.ITEM, isInventoryId},
     begin() {
       dispatch(addDraggedItem([x, y], mainCell, width, height));
     },
