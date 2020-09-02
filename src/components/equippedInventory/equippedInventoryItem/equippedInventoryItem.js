@@ -39,7 +39,6 @@ const EquippedInventoryItem = ({cellId, allowedItemType, item, children}) => {
       return ({isOver: monitor.isOver({ shallow: true }), canDrop: monitor.canDrop()});
     }
   })
-
   return (
     <Container ref={drop}>
       {children}
