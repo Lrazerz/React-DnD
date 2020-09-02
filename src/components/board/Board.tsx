@@ -22,8 +22,7 @@ const Container = styled.div`
 const RenderSquare = styled.div`
     height: 100%;
     box-sizing: border-box; 
-    border-top: 3px solid gray; 
-    border-left: 3px solid gray;
+    border: 1px solid gray; 
 `;
 
 const Board = () => {
@@ -37,11 +36,12 @@ const Board = () => {
 
   // Make element proportional no matter where it placed
   useEffect(() => {
+    console.log('useEffect');
     // Handler to call on window resize
     function handleResize() {
       const current: HTMLElement | null = boardEl.current;
       const width = current.clientWidth;
-      setBoardHeight(width * 0.35);
+      setBoardHeight(width * 0.35294);
     }
 
     // Add event listener
@@ -82,8 +82,10 @@ const Board = () => {
     }
   }
 
+  console.log('height',boardHeight);
+
   return (
-    <Container ref={boardEl} style={{height: `${boardHeight + 0}px`}}>
+    <Container ref={boardEl} style={{height: `${boardHeight+0}px`}}>
       {squares}
     </Container>
   )

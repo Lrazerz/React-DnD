@@ -50,10 +50,11 @@ const BoardSquare = ({coords: [x,y], children}) => {
     }
   },[x,y,allHoveredSquares])
 
+  console.log('isOver, canDropreDux',isOver,canDropRedux);
   return (
     <Div ref={drop}>
       <Square>{children}</Square>
-      {!isOver && canDropRedux && <Overlay color="yellow" />}
+      {/*{!isOver && canDropRedux && <Overlay color="yellow" />}*/}
       {isOver && !canDropRedux && <Overlay color="red" />}
       {isOver && canDropRedux && <Overlay color="green" />}
     </Div>

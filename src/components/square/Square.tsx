@@ -1,4 +1,16 @@
 import React from 'react'
+import styled from "styled-components";
+
+const Container = styled.div`
+  backgroundColor: background: linear-gradient(#878c8a,#636967);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justifyContent: center;
+  alignItems: center;
+`;
+
+
 
 interface Props {
   children: any;
@@ -6,14 +18,9 @@ interface Props {
 
 const Square = ({children}: Props) => {
   return (
-    <div style={{
-      backgroundColor: 'white', color: 'black', width: '100%', height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}>
+    <Container>
       {children}
-    </div>
+    </Container>
   )
 }
 

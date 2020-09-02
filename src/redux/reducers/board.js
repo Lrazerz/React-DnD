@@ -4,12 +4,12 @@ import {SQUARES_FILL, SQUARES_RELEASE} from "../actions/types";
 // board - matrix;
 // board[y][x] - single cell, if null - empty,
 // if {mainCell:[x,y],width,height} - filled
-const initialState = {
-  board: [],
-}
+// const initialState = {
+//   board: [],
+// }
 
 const fillInitialState = () => {
-  const {board} = initialState;
+  const board = [];
   for (let y = yMin; y <= yMax; y++) {
     board[y] = [];
     for (let x = xMin; x <= xMax; x++) {
