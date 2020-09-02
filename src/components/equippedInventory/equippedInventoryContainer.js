@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import EquippedInventoryItem from "./equippedInventoryItem/equippedInventoryItem";
 import SquareCommonItem from "../../containers/SquareCommonItem/SquareCommonItem";
+import theme from "../../constants/css/theme";
 
 const EquippedInventoryContainer = ({cells}) => {
 
@@ -11,12 +12,12 @@ const EquippedInventoryContainer = ({cells}) => {
     height: 100vh;
     box-sizing: border-box;
     padding: 2%;
-    background: linear-gradient(#525957,#545c59);
+    background: linear-gradient(${theme.colors.gray},${theme.colors.lighterGray});
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    @media (max-width: 780px) {
+    @media (max-width: ${theme.breakpoints.md}px) {
       height: 20vh;
       min-width: 100%;
       flex-direction: row;

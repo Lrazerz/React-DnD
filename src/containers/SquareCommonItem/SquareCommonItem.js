@@ -14,12 +14,14 @@ const SquareCommonItem = ({coords: [x, y], mainCell, width, height, isInventoryI
     begin() {
       dispatch(addDraggedItem([x, y], mainCell, width, height));
     },
-    end() {
-      // !== false coz can be 0
-      if(isInventoryId !== false) {
-        dispatch(removeEquippedItem(isInventoryId));
+    end(item, monitor) {
+      console.log('end');
+      // if dropped from the inventory
+      if(monitor.didDrop() && isInventoryId !== false) {
+          dispatch(removeEquippedItem(isInventoryId));
       }
       dispatch(removeHoveredSquares());
+
     },
     collect: () => {
       return ({});

@@ -8,34 +8,74 @@ import {SQUARES_FILL, SQUARES_RELEASE} from "../actions/types";
 //   board: [],
 // }
 
-const fillInitialState = () => {
-  const board = [];
-  for (let y = yMin; y <= yMax; y++) {
-    board[y] = [];
-    for (let x = xMin; x <= xMax; x++) {
-      if(x === 3 && y === 3 || x === 3 && y === 4 || x === 4 && y === 3 || x === 4 && y === 4
-        || x === 3 && y === 2 || x === 4 && y === 2)
-      {
-        board[y][x] = {
+// Set initial 2 items
+const _fillInitialSquares = (x,y) => {
+  switch(x) {
+    // First item (2x3)
+    case 3: {
+      if(y === 2 || y === 3 || y === 4) {
+        return {
           mainCell: [3,2],
           width: 2,
           height: 3
         };
-      } else if (x === 8 && y === 4 ||x === 9 && y === 4
-         ||x === 8 && y === 5 ||x === 9 && y === 5 )
-      {
-        board[y][x] = {
+      }
+      return null;
+      break;
+    }
+    case 4: {
+      if(y === 2 || y === 3 || y === 4) {
+        return {
+          mainCell: [3,2],
+          width: 2,
+          height: 3
+        }
+      }
+      return null;
+      break;
+    }
+    // Second Item (2x2)
+    case 8: {
+      if(y === 4 || y === 5) {
+        return {
           mainCell: [8,4],
           width: 2,
           height: 2
-        };
-      } else board[y][x] = null;
+        }
+      }
+      return null;
+      break;
+    }
+    case 9: {
+      if(y === 4 || y === 5) {
+        return {
+          mainCell: [8,4],
+          width: 2,
+          height: 2
+        }
+      }
+      return null;
+      break;
+    }
+    default: {
+      return null;
+    }
+  }
+}
+
+// Fill the matrix
+const _fillInitialState = () => {
+  const board = [];
+  for (let y = yMin; y <= yMax; y++) {
+    board[y] = [];
+    for (let x = xMin; x <= xMax; x++) {
+      board[y][x] = _fillInitialSquares(x,y);
     }
   }
   return {board};
 }
 
-export default (state = fillInitialState(), action) => {
+export default (state = _fillInitialState(), action) => {
   switch (action.type) {
     case SQUARES_FILL: {
       // immutable way

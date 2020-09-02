@@ -7,11 +7,14 @@ import {addItems, removeItems} from "../../redux/actions/board";
 import Overlay from "../../components/square/Overlay";
 import {setHoveredSquares} from "../../redux/actions/draggedItem";
 import styled from "styled-components";
+import theme from "../../constants/css/theme";
 
 const Div = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  box-sizing: border-box; 
+  border: 1px solid ${theme.colors.lightGray}; 
 `;
 
 const BoardSquare = ({coords: [x,y], children}) => {
@@ -55,9 +58,8 @@ const BoardSquare = ({coords: [x,y], children}) => {
   return (
     <Div ref={drop}>
       <Square>{children}</Square>
-      {/*{!isOver && canDropRedux && <Overlay color="yellow" />}*/}
-      {isOver && !canDropRedux && <Overlay color="red" />}
-      {isOver && canDropRedux && <Overlay color="green" />}
+      {isOver && !canDropRedux && <Overlay color={theme.colors.danger} />}
+      {isOver && canDropRedux && <Overlay color={theme.colors.success} />}
     </Div>
   )
 }

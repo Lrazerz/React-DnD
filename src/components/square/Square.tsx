@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from "styled-components";
+import theme from "../../constants/css/theme";
 
 const Container = styled.div`
-  backgroundColor: background: linear-gradient(#878c8a,#636967);
+  backgroundColor: background: linear-gradient(${theme.colors.gray},${theme.colors.lighterGray});
   width: 100%;
   height: 100%;
   display: flex;
@@ -16,7 +17,7 @@ interface Props {
   children: any;
 }
 
-const Square = ({children}: Props) => {
+const Square: React.FC<Props> = ({children}) => {
   return (
     <Container>
       {children}

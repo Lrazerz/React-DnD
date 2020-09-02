@@ -7,13 +7,19 @@ const Span = styled.span`
   cursor: move;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: #000;
 `;
 
-const CommonItem = ({children, forwardedRef}) => {
+interface Props {
+  children: any,
+  forwardedRef: React.Ref<any>;
+}
+
+const CommonItem: React.FC<Props> = ({children, forwardedRef}) => {
   return (
     <Span ref={forwardedRef}>{children}</Span>
   );
 };
 
+//@ts-ignore
 export default CommonItem;

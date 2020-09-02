@@ -4,6 +4,7 @@ import {yMax, yMin, xMax, xMin} from "../../constants/boardDimensions";
 import {useSelector} from "react-redux";
 import styled from "styled-components";
 import SquareCommonItem from "../../containers/SquareCommonItem/SquareCommonItem";
+import theme from "../../constants/css/theme";
 
 const Container = styled.div`
     width: 68%;
@@ -13,16 +14,10 @@ const Container = styled.div`
     grid-template-columns: repeat(17, 1fr);
     grid-template-rows: repeat(6, 1fr);
     overflow: hidden;
-    @media (max-width: 780px) {
+    @media (max-width: ${theme.breakpoints.md}px) {
       margin: 1% auto;
       width: 100%;
     }
-`;
-
-const RenderSquare = styled.div`
-    height: 100%;
-    box-sizing: border-box; 
-    border: 1px solid gray; 
 `;
 
 const Board = () => {
@@ -67,11 +62,9 @@ const Board = () => {
                                         width={width} height={height}/>;
     }
     return (
-      <RenderSquare key={x*20+y}>
-        <BoardSquare coords={[x, y]}>
-          {squareContent}
-        </BoardSquare>
-      </RenderSquare>
+      <BoardSquare key={x*20+y} coords={[x, y]}>
+        {squareContent}
+      </BoardSquare>
     );
   }
 
